@@ -122,13 +122,14 @@ public class locTransfer extends AppCompatActivity {
                     @Override
                     public void onLocationChanged(Location location) {
 
-                        float speed, accuracy;
+                        float speed, accuracy,bearing;
                         double lat, lng;
 
                         speed = location.getSpeed();
                         accuracy = location.getAccuracy();
                         lat = location.getLatitude();
                         lng = location.getLongitude();
+                        bearing = location.getBearing();
 
                         float slat,slng;
                         slat = Math.round(lat);
@@ -156,7 +157,7 @@ public class locTransfer extends AppCompatActivity {
                                 pack.put("coords", scoords);
                                 pack.put("speed", speed);
                                 pack.put("accuracy", accuracy);
-
+                                pack.put("bearing",bearing);
                                 try {
                                     URL srl = new URL("https://note-runfree.rhcloud.com/follow/feedLocation.php");
                                     if(isNetworkOnline()) {
